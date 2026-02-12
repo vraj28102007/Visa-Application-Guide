@@ -1,0 +1,30 @@
+# Project Documentation
+
+## 1. Introduction
+Visa Application Assistant helps users understand visa procedures using chatbot interaction.
+
+## 2. Objective
+- Provide visa guidance
+- Reduce confusion in visa process
+- Offer step-by-step instructions
+
+## 3. System Features
+- Interactive chatbot
+- Guided conversation flow
+- Document information
+
+## 4. Technologies Used
+- HTML for structure
+- CSS for design
+- JavaScript for chatbot logic
+
+## 5. Working Process
+1. User enters query
+2. Chatbot processes input
+3. Chatbot provides visa information
+
+## 6. Future Enhancements
+- AI Integration
+- Multi-language support
+- Database connectivity
+- Real visa API integration
