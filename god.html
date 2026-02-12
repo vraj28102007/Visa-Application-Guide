@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visa Application Assistant</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.chat-container {
+    width: 400px;
+    height: 550px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 12px 12px 0 0;
+}
+
+.chat-box {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.message {
+    padding: 8px 12px;
+    margin: 6px 0;
+    border-radius: 10px;
+    max-width: 75%;
+}
+
+.user {
+    background: #007bff;
+    color: white;
+    margin-left: auto;
+}
+
+.bot {
+    background: #e4e6eb;
+}
+
+.input-area {
+    display: flex;
+    border-top: 1px solid #ccc;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #0056b3;
+}
+</style>
+</head>
+
+<body>
+
+<div class="chat-container">
+    <div class="header">Visa Application Assistant</div>
+
+    <div class="chat-box" id="chatBox">
+        <div class="message bot">
+            Hello 👋 Ask me about visa requirements.
+        </div>
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type your question..." onkeypress="handleKey(event)">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script>
+
+function handleKey(event){
+    if(event.key === "Enter"){
+        sendMessage();
+    }
+}
+
+function sendMessage() {
+
+    let input = document.getElementById("userInput");
+    let message = input.value.trim();
+
+    if(message === "") return;
+
+    addMessage(message, "user");
+    input.value = "";
+
+    setTimeout(() => {
+        let reply = getBotReply(message.toLowerCase());
+        addMessage(reply, "bot");
+    }, 500);
+}
+
+function addMessage(text, type) {
+    let chatBox = document.getElementById("chatBox");
+
+    let msg = document.createElement("div");
+    msg.classList.add("message", type);
+    msg.innerText = text;
+
+    chatBox.appendChild(msg);
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function getBotReply(message) {
+
+    if(message.includes("how") && message.includes("visa"))
+        return "To get a visa, you usually choose visa type, fill application form, submit documents, pay fees, and attend interview if required.";
+
+    else if(message.includes("usa"))
+        return "For USA visa you need passport, DS-160 form, photo, and interview.";
+
+    else if(message.includes("canada"))
+        return "Canada visa requires passport, application form, financial proof, and photo.";
+
+    else if(message.includes("student"))
+        return "Student visa requires admission letter, passport, financial proof, and academic documents.";
+
+    else if(message.includes("tourist"))
+        return "Tourist visa requires passport, travel booking, hotel details, and financial proof.";
+
+    else if(message.includes("documents"))
+        return "Common visa documents include passport, photos, application form, travel details, and bank proof.";
+
+    else if(message.includes("hello") || message.includes("hi"))
+        return "Hello 👋 How can I help you with visa applications?";
+
+    else
+        return "Please ask about visa type, country, or required documents.";
+}
+
+</script>
+
+</body>
+</html>
